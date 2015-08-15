@@ -16,7 +16,7 @@ from textwrap import dedent
 from flask import Flask
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
 def hello(username='World'):
@@ -44,12 +44,12 @@ def htmlize(text, back=None):
     '''.format(text, back))
     return html
 
-@app.route('/')
+@application.route('/')
 def hello_world():
     text = hello()
     return htmlize(text)
 
-@app.route('/<username>')
+@application.route('/<username>')
 def hello_user(username):
     text = hello(username)
     return htmlize(text, back=True)
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     debug = args.get('--debug')
     host = args.get('--host', '0.0.0.0')
 
-    app.run(debug=debug, port=port, host=host)
+    application.run(debug=debug, port=port, host=host)
