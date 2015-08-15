@@ -26,12 +26,12 @@ def htmlize(text, back=None):
     if back is not None:
         back = '<p><a href="/">Back</a></p>'
     else:
-        back = textwrap.dedent('''
+        back = dedent('''
             <p><em>Hint</em>: This is a RESTful web service! Append a username
-            to the URL (for example: <code>/Thelonious</code>) to say hello to
-            someone specific.</p>'
+            to the URL (for example: <a href="/Thelonius"><code>/Thelonious</code></a>) to say hello to
+            someone specific.</p>
             ''')
-    html = textwrap.dedent('''
+    html = dedent('''
     <html>
     <head>
         <title>AWS EB Flask Test</title>
@@ -51,8 +51,8 @@ def hello_world():
 
 @app.route('/<username>')
 def hello_user(username):
-    text = hello(username, back=True)
-    return htmlize(text)
+    text = hello(username)
+    return htmlize(text, back=True)
 
 
 if __name__ == '__main__':
